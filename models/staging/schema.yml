@@ -1,0 +1,102 @@
+version: 2
+
+sources:
+  # Keep your existing TPCH sources
+  - name: tpch
+    description: TPC-H sample dataset from Snowflake
+    database: snowflake_sample_data
+    schema: tpch_sf1
+    tables:
+      - name: customer
+        description: Customer information
+        columns:
+          - name: c_custkey
+            description: Customer key (Primary Key)
+            tests:
+              - unique
+              - not_null
+          - name: c_name
+            description: Customer name
+          - name: c_nationkey
+            description: Nation key reference
+      
+      - name: orders
+        description: Order information
+        columns:
+          - name: o_orderkey
+            description: Order key (Primary Key)
+            tests:
+              - unique
+              - not_null
+          - name: o_custkey
+            description: Customer key (Foreign Key)
+            tests:
+              - not_null
+      
+      - name: lineitem
+        description: Line item details
+        columns:
+          - name: l_orderkey
+            description: Order key (Foreign Key)
+            tests:
+              - not_null
+          - name: l_linenumber
+            description: Line number within order
+
+  # Corrected employee data sources
+  - name: raw_data
+    description: Employee and HR data from PHANI database
+    database: PHANI
+    schema: RAW_DATA
+    tables:
+      - name: employees
+        description: Employee master data
+        columns:
+          - name: empno
+            description: Employee number (Primary Key)
+            tests:
+              - unique
+              - not_null
+          - name: ename
+            description: Employee name
+            tests:
+              - not_null
+          - name: job
+            description: Job title
+          - name: mgr
+            description: Manager employee number
+          - name: hiredate
+            description: Date employee was hired
+          - name: sal
+            description: Annual salary
+            tests:
+              - not_null
+          - name: comm
+            description: Commission amount
+          - name: deptno
+            description: Department number
+          - name: last_updated
+            description: Timestamp when record was last updated
+      
+      - name: employee_changes
+        description: Employee change audit log
+        columns:
+          - name: change_id
+            description: Change ID (Primary Key)
+            tests:
+              - unique
+              - not_null
+          - name: empno
+            description: Employee number
+            tests:
+              - not_null
+          - name: change_type
+            description: Type of change (SALARY_CHANGE, PROMOTION, TRANSFER)
+          - name: old_value
+            description: Previous value
+          - name: new_value
+            description: New value
+          - name: change_date
+            description: When the change occurred
+          - name: changed_by
+            description: Who made the change

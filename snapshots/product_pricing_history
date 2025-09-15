@@ -1,0 +1,10 @@
+-- Track price changes over time
+{% snapshot product_pricing_history %}
+    {{ config(
+        unique_key='product_id',
+        strategy='check',
+        check_cols=['price', 'discount_rate']
+    ) }}
+    select product_id, product_name, price, discount_rate
+    from {{ source('inventory', 'products') }}
+{% endsnapshot %}

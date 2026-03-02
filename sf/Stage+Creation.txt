@@ -1,0 +1,26 @@
+*** Stage Creation ***
+
+
+- On file storage for Internal stage vs External stage: https://docs.snowflake.com/en/sql-reference/sql/create-stage
+
+
+- Command used to create the external stage weather_stage:
+
+	CREATE OR REPLACE STAGE DEMO.DEMO_SCHEMA.weather_stage
+	url='s3://snowflake-workshop-lab/weather-nyc'
+	FILE_FORMAT= (TYPE='json');
+
+
+- More examples on creating external stages: https://docs.snowflake.com/en/sql-reference/sql/create-stage#label-create-external-stage-examples
+
+
+- Command used to 'list' the files within a stage:
+
+	LIST @DEMO.DEMO_SCHEMA.weather_stage;
+
+
+
+- More on the list command: https://docs.snowflake.com/en/sql-reference/sql/list
+
+
+

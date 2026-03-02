@@ -1,0 +1,14 @@
+*** Snowsql and PUT command ***
+
+
+- Command to create the BIKE_STAGE:
+
+	CREATE OR REPLACE STAGE DEMO.DEMO_SCHEMA.BIKE_STAGE;
+	
+
+- More examples on the PUT command ( Mac/Linux or Windows): https://docs.snowflake.com/en/sql-reference/sql/put#examples
+
+
+- Command used to PUT the bike dataset files from my local folder into the stage BIKE_STAGE - To adapt to your local folder containing the datasets:
+
+	PUT 'file:///C:/Users/d.weigel/Downloads/2023-citibike-tripdata/*/*.csv' @BIKE_STAGE

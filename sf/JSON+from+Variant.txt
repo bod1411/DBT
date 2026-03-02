@@ -1,0 +1,18 @@
+*** JSON from Variant ***
+
+
+- More on selecting specific fields from a JSON stored in a Variant: https://docs.snowflake.com/en/user-guide/querying-semistructured
+
+- Command used to query the fields used from the JSON contained in the Variant column:
+
+	SELECT
+	data:city:findname,
+	data:city:coord:lat,
+	data:city:coord:lon,
+	data:clouds:all,
+	data:main:humidity,
+	data:main:pressure,
+	data:main:temp,
+	data:time,
+	data:weather[0]:main
+	FROM WEATHERTABLE;
